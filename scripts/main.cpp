@@ -24,6 +24,7 @@ int main(int args,char* argv[])
 	Model shotgun;
 	ReadToModel("models/shotgun.jsfm",shotgun);
 
+	int dx = 0;
 	while (run)
 	{
 		while (SDL_PollEvent(&event))
@@ -37,8 +38,9 @@ int main(int args,char* argv[])
 		SDL_SetRenderDrawColor(ren,0,0,0,255);
 		SDL_RenderClear(ren);
 		
-		render3(win,ren,shotgun,{200,200,200},0x01,90,0,0,1,6);
-		
+		render3(win,ren,shotgun,{200,200,200},0x01,dx,0,0,1);
+		dx++;
+
 		SDL_RenderPresent(ren);
 		SDL_Delay(20);
 	}
