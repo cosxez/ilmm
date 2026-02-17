@@ -22,9 +22,18 @@ int main(int args,char* argv[])
 	SDL_Event event;
 
 	Model shotgun;
+	Model main_scene;
 	ReadToModel("models/shotgun.jsfm",shotgun);
+	ReadToModel("models/mains.jsfm",main_scene);
+	
+	int width, height;
 
+	SDL_GetWindowSize(win,&width,&height);
 	int dx = 0;
+
+	int player_x = 0;
+	int player_y = 0;
+	int player_z = 0;
 	while (run)
 	{
 		while (SDL_PollEvent(&event))
@@ -33,14 +42,19 @@ int main(int args,char* argv[])
 			{
 				run=false;
 			}
+			if (event.key.keysym.scancode == 7) { player_x -= 10; }
+			if (event.key.keysym.scancode == 4) { player_x += 10; }
+			if (event.key.keysym.scancode == 26) { player_z -= 1; }
+			if (event.key.keysym.scancode == 22) { player_z += 0.1f; }
 		}
 
 		SDL_SetRenderDrawColor(ren,0,0,0,255);
 		SDL_RenderClear(ren);
 		
-		render3(win,ren,shotgun,{200,200,200},0x01,dx,0,0,1);
-		dx++;
-
+		//render3(win,ren,shotgun,{200,200,200},0x01,dx,0,0,1);
+		//dx++;
+		render3(win, ren, main_scene, { 200,200,200 }, 0x01,dx,player_x,-30,player_z);
+		
 		SDL_RenderPresent(ren);
 		SDL_Delay(20);
 	}
