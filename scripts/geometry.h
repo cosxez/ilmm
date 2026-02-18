@@ -54,7 +54,7 @@ void vector3(SDL_Window* window, SDL_Renderer* render, float x1, float y1, float
 
 void triangle3(SDL_Window* window, SDL_Renderer* render, float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3)
 {
-	//if (z1 >= 0 && z2 >= 0 && z3 >= 0)
+	if (z1 >= 0 && z2 >= 0 && z3 >= 0)
 	{
 		int w, h;
 

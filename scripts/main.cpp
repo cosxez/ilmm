@@ -33,7 +33,7 @@ int main(int args,char* argv[])
 
 	int player_x = 0;
 	int player_y = 0;
-	int player_z = 0;
+	int player_z = 1;
 	while (run)
 	{
 		while (SDL_PollEvent(&event))
@@ -45,15 +45,17 @@ int main(int args,char* argv[])
 			if (event.key.keysym.scancode == 7) { player_x -= 10; }
 			if (event.key.keysym.scancode == 4) { player_x += 10; }
 			if (event.key.keysym.scancode == 26) { player_z -= 1; }
-			if (event.key.keysym.scancode == 22) { player_z += 0.1f; }
+			if (event.key.keysym.scancode == 22) { player_z += 1; }
+			if (event.key.keysym.scancode==80){dx--;}
+			if (event.key.keysym.scancode==79){dx++;}
 		}
 
 		SDL_SetRenderDrawColor(ren,0,0,0,255);
 		SDL_RenderClear(ren);
 		
-		//render3(win,ren,shotgun,{200,200,200},0x01,dx,0,0,1);
-		//dx++;
-		render3(win, ren, main_scene, { 200,200,200 }, 0x01,dx,player_x,-30,player_z);
+		render3(win,ren,shotgun,{200,200,200},0x01,0,width/100*5,-height/100*15,-0.1);
+		
+		render3(win, ren, main_scene, { 200,200,200 }, 0x01,dx,player_x,-30+player_y,player_z*0.01);
 		
 		SDL_RenderPresent(ren);
 		SDL_Delay(20);
