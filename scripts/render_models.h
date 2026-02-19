@@ -37,14 +37,14 @@ void render3(SDL_Window* win, SDL_Renderer* ren, Model model, Color color, char 
 		}
 
 		for (int i = 0; i < model.triangles.size(); i+=simplistic_step)
-		{
+		{	
 			float n_x1 = model.triangles[i].x1 * cos(ygl) - model.triangles[i].z1 * sin(ygl);
 			float n_z1 = model.triangles[i].x1 * sin(ygl) + model.triangles[i].z1 * cos(ygl);
 			float n_x2 = model.triangles[i].x2 * cos(ygl) - model.triangles[i].z2 * sin(ygl);
 			float n_z2 = model.triangles[i].x2 * sin(ygl) + model.triangles[i].z2 * cos(ygl);
 			float n_x3 = model.triangles[i].x3 * cos(ygl) - model.triangles[i].z3 * sin(ygl);
 			float n_z3 = model.triangles[i].x3 * sin(ygl) + model.triangles[i].z3 * cos(ygl);
-
+	
 			SDL_SetRenderDrawColor(ren, color.red, color.green, color.blue, 255);
 			triangle3(win, ren, n_x1 * 400 + offset_x, model.triangles[i].y1 * 400 + offset_y, n_z1 + 1 + offset_z, n_x2 * 400 + offset_x, model.triangles[i].y2 * 400 + offset_y, n_z2 + 1 + offset_z, n_x3 * 400 + offset_x, model.triangles[i].y3 * 400 + offset_y, n_z3 + 1 + offset_z);
 		}

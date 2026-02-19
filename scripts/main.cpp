@@ -29,11 +29,11 @@ int main(int args,char* argv[])
 	int width, height;
 
 	SDL_GetWindowSize(win,&width,&height);
-	int dx = 0;
+	float dx = 0;
 
-	int player_x = 0;
-	int player_y = 0;
-	int player_z = 1;
+	float player_x = 0;
+	float player_y = 0;
+	float player_z = 1;
 	while (run)
 	{
 		while (SDL_PollEvent(&event))
@@ -42,21 +42,21 @@ int main(int args,char* argv[])
 			{
 				run=false;
 			}
-			if (event.key.keysym.scancode == 7) { player_x -= 10; }
-			if (event.key.keysym.scancode == 4) { player_x += 10; }
-			if (event.key.keysym.scancode == 26) { player_z -= 2; }
-			if (event.key.keysym.scancode == 22) { player_z += 2; }
-			if (event.key.keysym.scancode==80){dx--;}
-			if (event.key.keysym.scancode==79){dx++;}
+			if (event.key.keysym.scancode == 7) { player_x -=15; }
+			if (event.key.keysym.scancode == 4) { player_x += 15; }
+			if (event.key.keysym.scancode == 26) { player_z -= 0.05; }
+			if (event.key.keysym.scancode == 22) { player_z += 0.05; }
+			if (event.key.keysym.scancode==80){dx--;player_x+=7;}
+			if (event.key.keysym.scancode==79){dx++;player_x-=7;}
 		}
 
-		SDL_SetRenderDrawColor(ren,0,0,0,255);
+		SDL_SetRenderDrawColor(ren,200,200,200,255);
 		SDL_RenderClear(ren);
 		
-		render3(win,ren,shotgun,{200,200,200},0x01,0,width/100*5,-height/100*15,-0.1);
-		
-		render3(win, ren, main_scene, { 200,200,200 }, 0x01,dx,player_x,-30+player_y,player_z*0.01);
-
+		render3(win,ren,shotgun,{0,0,0},0x01,0,width/100*5,-height/100*15,-0.1);
+		render3(win,ren,shotgun,{0,0,0},0x01,dx,player_x,player_y,player_z+4);
+		render3(win, ren, main_scene,{ 0,0,0 },0x01,0,player_x,player_y-30,player_z);
+	
 		SDL_RenderPresent(ren);
 		SDL_Delay(20);
 	}
